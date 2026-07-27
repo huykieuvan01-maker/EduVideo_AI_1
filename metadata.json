@@ -1,0 +1,6 @@
+{
+  "name": "EduCore AI",
+  "description": "An Intelligent Pedagogical Orchestrator platform that provides personalized learning experiences with tools for Teachers, Students, and Parents.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
