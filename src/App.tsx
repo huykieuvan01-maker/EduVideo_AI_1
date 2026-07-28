@@ -229,19 +229,24 @@ export default function App() {
     let lastError = '';
     
     for (const modelId of modelsToTry) {
-      let actualModel = modelId;
-      // Map placeholders to standard API model names
+      // Build list of actual API models to try for this placeholder
+      const actualModels: string[] = [];
       if (modelId === 'gemini-3-flash-preview') {
-        actualModel = 'gemini-1.5-flash';
+        actualModels.push('gemini-2.0-flash', 'gemini-2.0-flash-exp', 'gemini-1.5-flash', 'gemini-1.5-flash-latest');
       } else if (modelId === 'gemini-3-pro-preview') {
-        actualModel = 'gemini-1.5-pro';
+        actualModels.push('gemini-2.0-pro-exp-02-05', 'gemini-1.5-pro', 'gemini-1.5-pro-latest');
       } else if (modelId === 'gemini-2.5-flash') {
-        actualModel = 'gemini-1.5-flash';
+        actualModels.push('gemini-2.0-flash', 'gemini-1.5-flash');
+      } else {
+        actualModels.push(modelId);
       }
 
-      updateState(modelId, 'loading');
-      
-      const contextPrompt = `
+      for (const actualModel of actualModels) {
+        // Try v1 first (stable), then v1beta
+        for (const apiVersion of ['v1', 'v1beta']) {
+          updateState(`${modelId} (${actualModel} - ${apiVersion})`, 'loading');
+          
+          const contextPrompt = `
 Vai trò người dùng hiện tại đang là: ${mode} (Teacher, Student, Parent).
 Đang thực hiện bước xử lý: BƯỚC ${stepNumber} (Step ${stepNumber}).
 
@@ -322,43 +327,49 @@ Hãy chèn thêm một khối JSON ở cuối câu trả lời của bạn, nằ
 Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 `;
 
-      try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${actualModel}:generateContent?key=${userApiKey}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [{ text: contextPrompt }]
+          try {
+            const url = `https://generativelanguage.googleapis.com/${apiVersion}/models/${actualModel}:generateContent?key=${userApiKey}`;
+            const response = await fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                contents: [
+                  {
+                    parts: [{ text: contextPrompt }]
+                  }
+                ],
+                systemInstruction: {
+                  parts: [{ text: SYSTEM_INSTRUCTION }]
+                },
+                generationConfig: {
+                  temperature: 0.7
+                }
+              }),
+            });
+            
+            const data = await response.json();
+            if (response.ok) {
+              const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+              if (text) {
+                // Successfully generated content!
+                return text;
               }
-            ],
-            systemInstruction: {
-              parts: [{ text: SYSTEM_INSTRUCTION }]
-            },
-            generationConfig: {
-              temperature: 0.7
+              throw new Error("Không nhận được phản hồi hợp lệ từ Gemini API.");
+            } else {
+              lastError = data.error?.message || 'Lỗi không xác định từ Gemini API';
+              console.warn(`Model ${actualModel} (${apiVersion}) failed for Step ${stepNumber}:`, lastError);
             }
-          }),
-        });
-        
-        const data = await response.json();
-        if (response.ok) {
-          const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (text) return text;
-          throw new Error("Không nhận được phản hồi hợp lệ từ Gemini API.");
-        } else {
-          lastError = data.error?.message || 'Lỗi không xác định từ Gemini API';
-          console.warn(`Model ${modelId} failed for Step ${stepNumber}:`, lastError);
+          } catch (err: any) {
+            lastError = err.message || 'Lỗi kết nối mạng';
+            console.warn(`Model ${actualModel} (${apiVersion}) threw error for Step ${stepNumber}:`, lastError);
+          }
         }
-      } catch (err: any) {
-        lastError = err.message || 'Lỗi kết nối mạng';
-        console.warn(`Model ${modelId} threw error for Step ${stepNumber}:`, lastError);
       }
     }
     
-    throw new Error(lastError || 'Tất cả các model đều thất bại.');
+    throw new Error(lastError || 'Tất cả các model và phiên bản API đều thất bại.');
   };
 
   // Slide PowerPoint Export Helper
