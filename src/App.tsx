@@ -232,11 +232,11 @@ export default function App() {
       // Build list of actual API models to try for this placeholder
       const actualModels: string[] = [];
       if (modelId === 'gemini-3-flash-preview') {
-        actualModels.push('gemini-2.0-flash', 'gemini-2.0-flash-exp', 'gemini-1.5-flash', 'gemini-1.5-flash-latest');
+        actualModels.push('gemini-3-flash-preview', 'gemini-2.5-flash', 'gemini-2.0-flash');
       } else if (modelId === 'gemini-3-pro-preview') {
-        actualModels.push('gemini-2.0-pro-exp-02-05', 'gemini-1.5-pro', 'gemini-1.5-pro-latest');
+        actualModels.push('gemini-3-pro-preview', 'gemini-2.5-pro');
       } else if (modelId === 'gemini-2.5-flash') {
-        actualModels.push('gemini-2.0-flash', 'gemini-1.5-flash');
+        actualModels.push('gemini-2.5-flash', 'gemini-2.0-flash');
       } else {
         actualModels.push(modelId);
       }
