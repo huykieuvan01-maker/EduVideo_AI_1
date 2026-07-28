@@ -369,7 +369,21 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
       }
     }
     
-    throw new Error(lastError || 'Tất cả các model và phiên bản API đều thất bại.');
+    let availableModelsStr = '';
+    try {
+      const listResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${userApiKey}`);
+      if (listResponse.ok) {
+        const listData = await listResponse.json();
+        const names = listData.models?.map((m: any) => m.name.replace('models/', '')) || [];
+        if (names.length > 0) {
+          availableModelsStr = '\n\n👉 Các model khả dụng cho API Key của bạn: ' + names.join(', ');
+        }
+      }
+    } catch (e: any) {
+      console.warn("Failed to list models:", e);
+    }
+
+    throw new Error((lastError || 'Tất cả các model và phiên bản API đều thất bại.') + availableModelsStr);
   };
 
   // Slide PowerPoint Export Helper
