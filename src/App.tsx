@@ -531,26 +531,26 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
   const showBlockingModal = !apiKey.trim() && !isSettingsOpen;
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-gradient-to-tr from-slate-50 via-blue-50/50 to-indigo-50/30 text-slate-800 flex flex-col font-sans">
       {/* Header */}
-      <header className="bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between shadow-lg static top-0 z-40">
+      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200/80 px-6 py-4 flex items-center justify-between shadow-sm static top-0 z-40">
         <div className="flex items-center gap-3">
-          <div className="bg-gradient-to-tr from-blue-600 to-indigo-600 p-2.5 rounded-xl shadow-md shadow-blue-900/40">
+          <div className="bg-gradient-to-tr from-blue-600 to-indigo-600 p-2.5 rounded-xl shadow-md shadow-blue-500/25">
             <Video className="w-6 h-6 text-white" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">EduVideo_AI</h1>
-              <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded-full border border-blue-500/30">V2.1</span>
+              <h1 className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">EduVideo_AI</h1>
+              <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 bg-blue-500/10 text-blue-600 rounded-full border border-blue-500/20">V2.1</span>
             </div>
-            <p className="text-xs text-slate-400 font-medium">AI-Powered Video Pedagogical Orchestrator</p>
+            <p className="text-xs text-slate-500 font-semibold">AI-Powered Video Pedagogical Orchestrator</p>
           </div>
         </div>
 
         {/* API Key settings & warning */}
         <div className="flex items-center gap-3">
           {!apiKey && (
-            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950/50 border border-red-500/30 text-[11px] font-semibold text-red-400 animate-pulse">
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-[11px] font-semibold text-red-500 animate-pulse">
               <AlertCircle className="w-3.5 h-3.5 text-red-500" />
               Lấy API key để sử dụng app
             </span>
@@ -561,10 +561,10 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
               setTempModel(selectedModel);
               setIsSettingsOpen(true);
             }}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all font-medium text-xs border
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all font-bold text-xs border
               ${!apiKey 
-                ? 'bg-red-950/40 text-red-400 hover:bg-red-950/60 border-red-500/40' 
-                : 'bg-slate-800 text-slate-200 hover:bg-slate-700 border-slate-700'
+                ? 'bg-red-50 text-red-600 hover:bg-red-100 border-red-200' 
+                : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200 shadow-sm'
               }`}
           >
             <Settings className="w-4 h-4" />
@@ -579,8 +579,8 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
         {/* Sidebar */}
         <aside className="w-full lg:w-80 flex flex-col gap-6">
           {/* Navigation / Role Selector */}
-          <div className="bg-slate-950/65 backdrop-blur-md rounded-2xl border border-slate-800/80 p-3 flex flex-col gap-1.5 shadow-xl">
-            <h3 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest px-3 mb-1">Cổng điều phối</h3>
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 p-3 flex flex-col gap-1.5 shadow-md">
+            <h3 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest px-3 mb-1">Cổng điều phối</h3>
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -594,57 +594,57 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
                   setPlayGame(false);
                 }}
                 disabled={loading}
-                className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl transition-all font-semibold text-left text-sm disabled:opacity-50 disabled:cursor-not-allowed
+                className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl transition-all font-bold text-left text-sm disabled:opacity-50 disabled:cursor-not-allowed
                   ${activeTab === tab.id 
                     ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/20' 
-                    : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-800'
                   }`}
               >
                 <tab.icon className={`w-5 h-5 ${activeTab === tab.id ? 'text-white' : 'text-slate-500'}`} />
                 <div>
-                  <p className="font-bold leading-tight">{tab.label}</p>
-                  <p className={`text-[10px] font-normal mt-0.5 max-w-[200px] truncate ${activeTab === tab.id ? 'text-blue-100' : 'text-slate-500'}`}>{tab.desc}</p>
+                  <p className="font-extrabold leading-tight">{tab.label}</p>
+                  <p className={`text-[10px] font-medium mt-0.5 max-w-[200px] truncate ${activeTab === tab.id ? 'text-blue-100' : 'text-slate-400'}`}>{tab.desc}</p>
                 </div>
               </button>
             ))}
           </div>
 
           {/* Model Stats info */}
-          <div className="bg-slate-950/65 backdrop-blur-md rounded-2xl border border-slate-800/80 p-5 flex flex-col gap-4 shadow-xl">
-            <div className="flex items-center gap-2 pb-3 border-b border-slate-800">
-              <Sparkles className="w-4 h-4 text-blue-400" />
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">Thông tin cấu hình</h4>
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 p-5 flex flex-col gap-4 shadow-md">
+            <div className="flex items-center gap-2 pb-3 border-b border-slate-150">
+              <Sparkles className="w-4 h-4 text-blue-500" />
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600">Thông tin cấu hình</h4>
             </div>
             
             <div className="flex flex-col gap-3 text-xs">
               <div>
-                <span className="text-slate-500 block mb-1">Model ưu tiên:</span>
-                <span className="font-mono text-blue-400 font-bold bg-blue-950/40 border border-blue-900/50 px-2.5 py-1 rounded-md inline-block">
+                <span className="text-slate-400 block mb-1">Model ưu tiên:</span>
+                <span className="font-mono text-blue-600 font-bold bg-blue-50 border border-blue-200/50 px-2.5 py-1 rounded-md inline-block">
                   {selectedModel}
                 </span>
               </div>
 
               <div>
-                <span className="text-slate-500 block mb-1">Hàng đợi Fallback (Lỗi tự chuyển):</span>
-                <div className="flex flex-wrap items-center gap-1.5 font-mono text-[10px] text-slate-400">
-                  <span className="px-1.5 py-0.5 bg-slate-800/50 rounded">flash-3</span>
-                  <span className="text-slate-600">&rarr;</span>
-                  <span className="px-1.5 py-0.5 bg-slate-800/50 rounded">pro-3</span>
-                  <span className="text-slate-600">&rarr;</span>
-                  <span className="px-1.5 py-0.5 bg-slate-800/50 rounded">flash-2.5</span>
-                  <span className="text-slate-600">&rarr;</span>
-                  <span className="px-1.5 py-0.5 bg-slate-800/50 rounded">pro-2.5</span>
+                <span className="text-slate-400 block mb-1">Hàng đợi Fallback (Lỗi tự chuyển):</span>
+                <div className="flex flex-wrap items-center gap-1.5 font-mono text-[10px] text-slate-500">
+                  <span className="px-1.5 py-0.5 bg-slate-100 rounded">flash-3</span>
+                  <span className="text-slate-400">&rarr;</span>
+                  <span className="px-1.5 py-0.5 bg-slate-100 rounded">pro-3</span>
+                  <span className="text-slate-400">&rarr;</span>
+                  <span className="px-1.5 py-0.5 bg-slate-100 rounded">flash-2.5</span>
+                  <span className="text-slate-400">&rarr;</span>
+                  <span className="px-1.5 py-0.5 bg-slate-100 rounded">pro-2.5</span>
                 </div>
               </div>
 
               <div>
-                <span className="text-slate-500 block mb-1">Trạng thái API Key:</span>
+                <span className="text-slate-400 block mb-1">Trạng thái API Key:</span>
                 {apiKey ? (
-                  <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                  <span className="text-emerald-600 font-bold flex items-center gap-1">
                     <CheckCircle2 className="w-3.5 h-3.5" /> Sẵn sàng (Hoạt động)
                   </span>
                 ) : (
-                  <span className="text-red-400 font-semibold flex items-center gap-1">
+                  <span className="text-red-500 font-bold flex items-center gap-1">
                     <XCircle className="w-3.5 h-3.5 animate-pulse" /> Chưa thiết lập API key
                   </span>
                 )}
@@ -657,17 +657,17 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
         <section className="flex-1 flex flex-col gap-6">
           
           {/* Input Area */}
-          <div className="bg-slate-950/65 backdrop-blur-md rounded-2xl border border-slate-800/80 p-6 flex flex-col gap-4 shadow-xl">
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 p-6 flex flex-col gap-4 shadow-md">
             <div className="flex items-center justify-between">
-              <h2 className="text-base font-bold text-slate-200 flex items-center gap-2">
+              <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
                 <currentTabInfo.icon className="w-5 h-5 text-blue-500" />
                 {currentTabInfo.label} Input
               </h2>
-              <span className="text-xs text-slate-500 font-medium">{activeTab} Mode</span>
+              <span className="text-xs text-slate-400 font-bold">{activeTab} Mode</span>
             </div>
             
             <textarea
-              className="w-full h-36 p-4 bg-slate-900/60 border border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 resize-none text-slate-300 placeholder-slate-500 text-sm leading-relaxed transition-all"
+              className="w-full h-36 p-4 bg-slate-50/50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 resize-none text-slate-700 placeholder-slate-400 text-sm leading-relaxed transition-all"
               placeholder={currentTabInfo.placeholder}
               value={inputData}
               onChange={(e) => setInputData(e.target.value)}
@@ -675,13 +675,13 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
             />
 
             <div className="flex justify-between items-center mt-1">
-              <div className="text-xs text-slate-500 font-medium">
+              <div className="text-xs text-slate-400 font-medium">
                 Sử dụng tiếng Việt hoặc ngôn ngữ của tài liệu nguồn.
               </div>
               <button
                 onClick={handleGenerate}
                 disabled={loading || !inputData.trim()}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl disabled:opacity-40 disabled:cursor-not-allowed font-semibold text-xs shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 transition-all"
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl disabled:opacity-40 disabled:cursor-not-allowed font-bold text-xs shadow-md shadow-blue-500/10 hover:shadow-blue-500/25 transition-all"
               >
                 {loading ? (
                   <>
@@ -700,35 +700,35 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
           {/* Stepper Progress Board */}
           {(step1.status !== 'idle' || step2.status !== 'idle' || step3.status !== 'idle') && (
-            <div className="bg-slate-950/65 backdrop-blur-md rounded-2xl border border-slate-800/80 p-5 shadow-xl">
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 p-5 shadow-md">
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center justify-between">
                 <span>Tiến trình xử lý 3 bước (AI Multi-step Pipeline)</span>
-                {loading && <span className="text-[10px] px-2 py-0.5 bg-blue-500/15 text-blue-400 rounded-md border border-blue-500/20 animate-pulse">Running</span>}
+                {loading && <span className="text-[10px] px-2 py-0.5 bg-blue-500/10 text-blue-600 rounded-md border border-blue-500/20 animate-pulse">Running</span>}
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Step 1 Card */}
                 <div className={`p-3.5 rounded-xl border transition-all ${
-                  step1.status === 'loading' ? 'bg-blue-950/20 border-blue-500/40 ring-1 ring-blue-500/20' :
-                  step1.status === 'success' ? 'bg-emerald-950/10 border-emerald-500/30' :
-                  step1.status === 'error' ? 'bg-red-950/10 border-red-500/30' :
-                  'bg-slate-900/40 border-slate-800/80'
+                  step1.status === 'loading' ? 'bg-blue-50/50 border-blue-300 ring-1 ring-blue-500/10' :
+                  step1.status === 'success' ? 'bg-emerald-50/40 border-emerald-200' :
+                  step1.status === 'error' ? 'bg-red-50/40 border-red-200' :
+                  'bg-slate-50/40 border-slate-200/80'
                 }`}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[11px] font-bold text-slate-500 uppercase">Bước 1</span>
+                    <span className="text-[11px] font-bold text-slate-400 uppercase">Bước 1</span>
                     {step1.status === 'loading' && <Loader2 className="w-4 h-4 text-blue-500 animate-spin" />}
-                    {step1.status === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-500" />}
+                    {step1.status === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-600" />}
                     {step1.status === 'error' && <XCircle className="w-4 h-4 text-red-500" />}
-                    {step1.status === 'waiting' && <span className="w-2 h-2 rounded-full bg-slate-700"></span>}
+                    {step1.status === 'waiting' && <span className="w-2 h-2 rounded-full bg-slate-350"></span>}
                   </div>
-                  <h4 className="text-xs font-bold text-slate-200 truncate">{stepNames.step1}</h4>
+                  <h4 className="text-xs font-bold text-slate-700 truncate">{stepNames.step1}</h4>
                   <div className="mt-2 flex flex-col gap-1">
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-[10px] text-slate-500">
                       Trạng thái: 
-                      <span className={`font-semibold ml-1 ${
-                        step1.status === 'loading' ? 'text-blue-400' :
-                        step1.status === 'success' ? 'text-emerald-400' :
-                        step1.status === 'error' ? 'text-red-400' : 'text-slate-500'
+                      <span className={`font-bold ml-1 ${
+                        step1.status === 'loading' ? 'text-blue-600' :
+                        step1.status === 'success' ? 'text-emerald-600' :
+                        step1.status === 'error' ? 'text-red-500' : 'text-slate-400'
                       }`}>
                         {step1.status === 'waiting' && 'Chờ xử lý'}
                         {step1.status === 'loading' && 'Đang xử lý...'}
@@ -737,7 +737,7 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
                       </span>
                     </span>
                     {step1.model && (
-                      <span className="text-[9px] font-mono text-slate-500">
+                      <span className="text-[9px] font-mono text-slate-400 font-medium">
                         Model: {step1.model}
                       </span>
                     )}
@@ -746,26 +746,26 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
                 {/* Step 2 Card */}
                 <div className={`p-3.5 rounded-xl border transition-all ${
-                  step2.status === 'loading' ? 'bg-blue-950/20 border-blue-500/40 ring-1 ring-blue-500/20' :
-                  step2.status === 'success' ? 'bg-emerald-950/10 border-emerald-500/30' :
-                  step2.status === 'error' ? 'bg-red-950/10 border-red-500/30' :
-                  'bg-slate-900/40 border-slate-800/80'
+                  step2.status === 'loading' ? 'bg-blue-50/50 border-blue-300 ring-1 ring-blue-500/10' :
+                  step2.status === 'success' ? 'bg-emerald-50/40 border-emerald-200' :
+                  step2.status === 'error' ? 'bg-red-50/40 border-red-200' :
+                  'bg-slate-50/40 border-slate-200/80'
                 }`}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[11px] font-bold text-slate-500 uppercase">Bước 2</span>
+                    <span className="text-[11px] font-bold text-slate-400 uppercase">Bước 2</span>
                     {step2.status === 'loading' && <Loader2 className="w-4 h-4 text-blue-500 animate-spin" />}
-                    {step2.status === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-500" />}
+                    {step2.status === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-600" />}
                     {step2.status === 'error' && <XCircle className="w-4 h-4 text-red-500" />}
-                    {step2.status === 'waiting' && <span className="w-2 h-2 rounded-full bg-slate-700"></span>}
+                    {step2.status === 'waiting' && <span className="w-2 h-2 rounded-full bg-slate-350"></span>}
                   </div>
-                  <h4 className="text-xs font-bold text-slate-200 truncate">{stepNames.step2}</h4>
+                  <h4 className="text-xs font-bold text-slate-700 truncate">{stepNames.step2}</h4>
                   <div className="mt-2 flex flex-col gap-1">
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-[10px] text-slate-500">
                       Trạng thái: 
-                      <span className={`font-semibold ml-1 ${
-                        step2.status === 'loading' ? 'text-blue-400' :
-                        step2.status === 'success' ? 'text-emerald-400' :
-                        step2.status === 'error' ? 'text-red-400' : 'text-slate-500'
+                      <span className={`font-bold ml-1 ${
+                        step2.status === 'loading' ? 'text-blue-600' :
+                        step2.status === 'success' ? 'text-emerald-600' :
+                        step2.status === 'error' ? 'text-red-500' : 'text-slate-400'
                       }`}>
                         {step2.status === 'waiting' && 'Chờ xử lý'}
                         {step2.status === 'loading' && 'Đang xử lý...'}
@@ -774,7 +774,7 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
                       </span>
                     </span>
                     {step2.model && (
-                      <span className="text-[9px] font-mono text-slate-500">
+                      <span className="text-[9px] font-mono text-slate-400 font-medium">
                         Model: {step2.model}
                       </span>
                     )}
@@ -783,26 +783,26 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
                 {/* Step 3 Card */}
                 <div className={`p-3.5 rounded-xl border transition-all ${
-                  step3.status === 'loading' ? 'bg-blue-950/20 border-blue-500/40 ring-1 ring-blue-500/20' :
-                  step3.status === 'success' ? 'bg-emerald-950/10 border-emerald-500/30' :
-                  step3.status === 'error' ? 'bg-red-950/10 border-red-500/30' :
-                  'bg-slate-900/40 border-slate-800/80'
+                  step3.status === 'loading' ? 'bg-blue-50/50 border-blue-300 ring-1 ring-blue-500/10' :
+                  step3.status === 'success' ? 'bg-emerald-50/40 border-emerald-200' :
+                  step3.status === 'error' ? 'bg-red-50/40 border-red-200' :
+                  'bg-slate-50/40 border-slate-200/80'
                 }`}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[11px] font-bold text-slate-500 uppercase">Bước 3</span>
+                    <span className="text-[11px] font-bold text-slate-400 uppercase">Bước 3</span>
                     {step3.status === 'loading' && <Loader2 className="w-4 h-4 text-blue-500 animate-spin" />}
-                    {step3.status === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-500" />}
+                    {step3.status === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-600" />}
                     {step3.status === 'error' && <XCircle className="w-4 h-4 text-red-500" />}
-                    {step3.status === 'waiting' && <span className="w-2 h-2 rounded-full bg-slate-700"></span>}
+                    {step3.status === 'waiting' && <span className="w-2 h-2 rounded-full bg-slate-350"></span>}
                   </div>
-                  <h4 className="text-xs font-bold text-slate-200 truncate">{stepNames.step3}</h4>
+                  <h4 className="text-xs font-bold text-slate-700 truncate">{stepNames.step3}</h4>
                   <div className="mt-2 flex flex-col gap-1">
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-[10px] text-slate-500">
                       Trạng thái: 
-                      <span className={`font-semibold ml-1 ${
-                        step3.status === 'loading' ? 'text-blue-400' :
-                        step3.status === 'success' ? 'text-emerald-400' :
-                        step3.status === 'error' ? 'text-red-400' : 'text-slate-500'
+                      <span className={`font-bold ml-1 ${
+                        step3.status === 'loading' ? 'text-blue-600' :
+                        step3.status === 'success' ? 'text-emerald-600' :
+                        step3.status === 'error' ? 'text-red-500' : 'text-slate-400'
                       }`}>
                         {step3.status === 'waiting' && 'Chờ xử lý'}
                         {step3.status === 'loading' && 'Đang xử lý...'}
@@ -811,7 +811,7 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
                       </span>
                     </span>
                     {step3.model && (
-                      <span className="text-[9px] font-mono text-slate-500">
+                      <span className="text-[9px] font-mono text-slate-400 font-medium">
                         Model: {step3.model}
                       </span>
                     )}
@@ -820,11 +820,11 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
               </div>
 
               {globalError && (
-                <div className="mt-4 p-4 bg-red-950/30 border border-red-900/50 rounded-xl flex gap-3 text-red-300 items-start">
+                <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl flex gap-3 text-red-700 items-start">
                   <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-xs font-bold text-red-400">Thông báo lỗi từ API (Nguyên văn):</h4>
-                    <p className="text-xs font-mono mt-1 select-all break-all">{globalError}</p>
+                    <h4 className="text-xs font-bold text-red-600">Thông báo lỗi từ API (Nguyên văn):</h4>
+                    <p className="text-xs font-mono mt-1 select-all break-all whitespace-pre-wrap">{globalError}</p>
                   </div>
                 </div>
               )}
@@ -833,28 +833,32 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
           {/* Output Display Areas */}
           {(step1.result || step2.result || step3.result) && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-6 animate-fade-in">
               
               {/* Step 1 Output */}
               {step1.result && (
-                <div className="bg-slate-950/65 backdrop-blur-md rounded-2xl border border-slate-800/80 overflow-hidden shadow-xl">
-                  <div className="bg-gradient-to-r from-blue-900/30 to-indigo-900/20 px-6 py-4 border-b border-slate-800 flex justify-between items-center">
-                    <span className="text-[11px] font-bold text-blue-400 uppercase tracking-widest">Bước 1: {stepNames.step1}</span>
+                <div className="bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 overflow-hidden shadow-lg">
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-slate-150 flex justify-between items-center">
+                    <span className="text-[11px] font-bold text-blue-600 uppercase tracking-widest">Bước 1: {stepNames.step1}</span>
                     <div className="flex items-center gap-2">
-                      {activeTab === 'Teacher' && step1.metadata?.slideData && (
+                      {activeTab === 'Teacher' && (step1.metadata?.slideData || step1.result) && (
                         <button 
-                          onClick={() => handleExportPPTX(step1.metadata.slideData)}
-                          className="flex items-center gap-1.5 px-2.5 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded text-[10px] font-bold transition-all"
+                          onClick={() => handleExportPPTX(step1.metadata?.slideData || parseSlidesFallback(step1.result))}
+                          className="flex items-center gap-1.5 px-2.5 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded text-[10px] font-bold transition-all shadow-sm"
                         >
                           <Download className="w-3 h-3" />
                           Xuất PPTX (.pptx)
                         </button>
                       )}
-                      <span className="text-[9px] font-mono px-2 py-0.5 bg-slate-800 text-slate-400 rounded border border-slate-700">{step1.model}</span>
+                      <span className="text-[9px] font-mono px-2 py-0.5 bg-slate-100 text-slate-500 rounded border border-slate-200">{step1.model}</span>
                     </div>
                   </div>
                   <div className="p-6 md:p-8">
-                    <div className="prose prose-invert prose-blue max-w-none prose-headings:font-bold prose-headings:text-slate-100 prose-headings:tracking-tight prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-blue-400 prose-strong:text-slate-100">
+                    {/* Render Talking Virtual Teacher player if kịch bản is present */}
+                    <VirtualTeacherPlayer slideData={step1.metadata?.slideData || parseSlidesFallback(step1.result)} />
+
+                    <div className="mt-8 pt-8 border-t border-slate-150 prose prose-blue max-w-none prose-headings:font-bold prose-headings:text-slate-800 prose-headings:tracking-tight prose-p:text-slate-600 prose-p:leading-relaxed prose-a:text-blue-600 prose-strong:text-slate-800">
+                      <h3 className="text-sm font-bold text-slate-700 mb-4">Chi tiết lời giảng của Kịch bản:</h3>
                       <Markdown>{cleanMarkdownText(step1.result)}</Markdown>
                     </div>
                     {/* SVG Concept Map Visualization for Student Step 1 */}
@@ -871,13 +875,13 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
               {/* Step 2 Output */}
               {step2.result && (
-                <div className="bg-slate-950/65 backdrop-blur-md rounded-2xl border border-slate-800/80 overflow-hidden shadow-xl">
-                  <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/20 px-6 py-4 border-b border-slate-800 flex justify-between items-center">
-                    <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-widest">Bước 2: {stepNames.step2}</span>
-                    <span className="text-[9px] font-mono px-2 py-0.5 bg-slate-800 text-slate-400 rounded border border-slate-700">{step2.model}</span>
+                <div className="bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 overflow-hidden shadow-lg">
+                  <div className="bg-gradient-to-r from-indigo-50 to-purple-50 px-6 py-4 border-b border-slate-150 flex justify-between items-center">
+                    <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-widest">Bước 2: {stepNames.step2}</span>
+                    <span className="text-[9px] font-mono px-2 py-0.5 bg-slate-100 text-slate-500 rounded border border-slate-200">{step2.model}</span>
                   </div>
                   <div className="p-6 md:p-8">
-                    <div className="prose prose-invert prose-blue max-w-none prose-headings:font-bold prose-headings:text-slate-100 prose-headings:tracking-tight prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-indigo-400 prose-strong:text-slate-100">
+                    <div className="prose prose-blue max-w-none prose-headings:font-bold prose-headings:text-slate-800 prose-headings:tracking-tight prose-p:text-slate-600 prose-p:leading-relaxed prose-a:text-indigo-600 prose-strong:text-slate-800">
                       <Markdown>{cleanMarkdownText(step2.result)}</Markdown>
                     </div>
                     {/* SVG Radar Chart for Parent Step 2 */}
@@ -890,14 +894,14 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
               {/* Step 3 Output */}
               {step3.result && (
-                <div className="bg-slate-950/65 backdrop-blur-md rounded-2xl border border-slate-800/80 overflow-hidden shadow-xl">
-                  <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/20 px-6 py-4 border-b border-slate-800 flex justify-between items-center">
-                    <span className="text-[11px] font-bold text-purple-400 uppercase tracking-widest">Bước 3: {stepNames.step3}</span>
+                <div className="bg-white/90 backdrop-blur-md rounded-2xl border border-slate-200/80 overflow-hidden shadow-lg">
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 px-6 py-4 border-b border-slate-150 flex justify-between items-center">
+                    <span className="text-[11px] font-bold text-purple-600 uppercase tracking-widest">Bước 3: {stepNames.step3}</span>
                     <div className="flex items-center gap-2">
                       {activeTab === 'Teacher' && step3.metadata?.worksheetData && (
                         <button 
                           onClick={() => handleExportDOCX(step3.metadata.worksheetData)}
-                          className="flex items-center gap-1.5 px-2.5 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded text-[10px] font-bold transition-all"
+                          className="flex items-center gap-1.5 px-2.5 py-1 bg-purple-600 hover:bg-purple-500 text-white rounded text-[10px] font-bold transition-all shadow-sm"
                         >
                           <Download className="w-3 h-3" />
                           Xuất Đề thi (.docx)
@@ -906,13 +910,13 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
                       {activeTab === 'Student' && step3.metadata?.quizData && (
                         <button 
                           onClick={() => setPlayGame(!playGame)}
-                          className="flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded text-[10px] font-bold transition-all"
+                          className="flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white rounded text-[10px] font-bold transition-all shadow-sm"
                         >
                           <Flame className="w-3 h-3" />
                           {playGame ? 'Ẩn Game ôn tập' : 'Chơi Game phản xạ'}
                         </button>
                       )}
-                      <span className="text-[9px] font-mono px-2 py-0.5 bg-slate-800 text-slate-400 rounded border border-slate-700">{step3.model}</span>
+                      <span className="text-[9px] font-mono px-2 py-0.5 bg-slate-100 text-slate-500 rounded border border-slate-200">{step3.model}</span>
                     </div>
                   </div>
                   <div className="p-6 md:p-8">
@@ -920,7 +924,7 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
                     {activeTab === 'Student' && playGame && step3.metadata?.quizData ? (
                       <ActiveRecallGame data={step3.metadata.quizData} />
                     ) : (
-                      <div className="prose prose-invert prose-blue max-w-none prose-headings:font-bold prose-headings:text-slate-100 prose-headings:tracking-tight prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-purple-400 prose-strong:text-slate-100">
+                      <div className="prose prose-blue max-w-none prose-headings:font-bold prose-headings:text-slate-800 prose-headings:tracking-tight prose-p:text-slate-600 prose-p:leading-relaxed prose-a:text-purple-600 prose-strong:text-slate-800">
                         <Markdown>{cleanMarkdownText(step3.result)}</Markdown>
                       </div>
                     )}
@@ -933,13 +937,13 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
           {/* Empty State */}
           {!loading && !step1.result && !step2.result && !step3.result && (
-            <div className="flex-1 flex flex-col items-center justify-center py-12 px-4 border border-dashed border-slate-800 rounded-2xl bg-slate-950/20 text-center">
-              <div className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500 mb-4 shadow-inner">
+            <div className="flex-1 flex flex-col items-center justify-center py-16 px-4 border border-dashed border-slate-200 rounded-2xl bg-white/40 text-center">
+              <div className="w-12 h-12 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 mb-4 shadow-sm">
                 <Play className="w-5 h-5 ml-0.5" />
               </div>
-              <h3 className="text-sm font-bold text-slate-300">Không có kịch bản hoạt động</h3>
-              <p className="text-xs text-slate-500 mt-1 max-w-md">
-                Thiết lập API Key (nếu chưa có) và chọn cổng tương tác bên trái để bắt đầu thiết kế kịch bản video giảng dạy.
+              <h3 className="text-sm font-bold text-slate-700 font-semibold">Chưa có bài giảng được thiết kế</h3>
+              <p className="text-xs text-slate-450 mt-1 max-w-md">
+                Thiết lập API Key (nếu chưa có) và nhập đề bài ở ô nhập liệu bên trên để Giáo viên ảo bắt đầu thiết kế video giảng dạy.
               </p>
             </div>
           )}
@@ -947,21 +951,24 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
         </section>
       </main>
 
+        </section>
+      </main>
+
       {/* Settings Modal */}
       {(isSettingsOpen || showBlockingModal) && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl animate-fade-in flex flex-col">
-            <div className="bg-slate-950 px-6 py-5 border-b border-slate-800 flex justify-between items-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-md p-4 animate-fade-in">
+          <div className="bg-white border border-slate-200 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl flex flex-col">
+            <div className="bg-slate-50 px-6 py-5 border-b border-slate-150 flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <Key className="w-4 h-4 text-blue-500" />
-                <h2 className="text-sm font-bold text-slate-200">
+                <Key className="w-4 h-4 text-blue-600" />
+                <h2 className="text-sm font-extrabold text-slate-800">
                   {showBlockingModal ? 'Yêu cầu Cấu hình API Key Gemini' : 'Thiết lập EduVideo_AI'}
                 </h2>
               </div>
               {!showBlockingModal && (
                 <button 
                   onClick={() => setIsSettingsOpen(false)}
-                  className="text-slate-500 hover:text-slate-300 text-xs font-semibold p-1 hover:bg-slate-800 rounded-lg transition-colors"
+                  className="text-slate-400 hover:text-slate-600 text-xs font-bold p-1 hover:bg-slate-100 rounded-lg transition-colors"
                 >
                   Đóng
                 </button>
@@ -970,8 +977,8 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
             <div className="p-6 flex flex-col gap-6">
               {showBlockingModal && (
-                <div className="p-4 bg-red-950/40 border border-red-500/20 text-red-300 rounded-xl text-xs flex gap-3">
-                  <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                <div className="p-4 bg-red-50 border border-red-100 text-red-700 rounded-xl text-xs flex gap-3">
+                  <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold">Ứng dụng chưa có API Key!</span> Vui lòng nhập API Key Gemini cá nhân bên dưới để tiếp tục trải nghiệm đầy đủ các tính năng của EduVideo_AI.
                   </div>
@@ -980,13 +987,13 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
               {/* API Key Input */}
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold text-slate-400 flex items-center justify-between">
+                <label className="text-xs font-bold text-slate-500 flex items-center justify-between">
                   <span>API Key Gemini:</span>
                   <a 
                     href="https://aistudio.google.com/api-keys" 
                     target="_blank" 
                     rel="noreferrer"
-                    className="text-[10px] text-red-400 hover:underline flex items-center gap-1 font-semibold"
+                    className="text-[10px] text-red-500 hover:underline flex items-center gap-1 font-bold animate-pulse"
                   >
                     Lấy API key tại Google AI Studio <ExternalLink className="w-3 h-3" />
                   </a>
@@ -994,7 +1001,7 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
                 <input
                   type="password"
                   placeholder="Nhập API Key của bạn (AIzaSy...)"
-                  className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-xs font-mono text-slate-300"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 text-xs font-mono text-slate-700"
                   value={tempKey}
                   onChange={(e) => setTempKey(e.target.value)}
                 />
@@ -1002,7 +1009,7 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
 
               {/* Model selection cards */}
               <div className="flex flex-col gap-3">
-                <span className="text-xs font-bold text-slate-400">Chọn Model AI ưu tiên (Có cơ chế tự động Fallback):</span>
+                <span className="text-xs font-bold text-slate-500">Chọn Model AI ưu tiên (Có cơ chế tự động Fallback):</span>
                 <div className="grid grid-cols-1 gap-2.5">
                   {[
                     { id: 'gemini-3-flash-preview', title: 'gemini-3-flash-preview', badge: 'Mặc định', desc: 'Tốc độ cực nhanh, tối ưu hóa chi phí và các tác vụ kịch bản.' },
@@ -1014,26 +1021,26 @@ Nếu không thuộc các bước trên, hãy chèn khối JSON rỗng: {}
                       onClick={() => setTempModel(modelOpt.id)}
                       className={`flex flex-col text-left p-3 rounded-xl border transition-all cursor-pointer
                         ${tempModel === modelOpt.id 
-                          ? 'bg-blue-950/30 border-blue-500/70 ring-1 ring-blue-500/30' 
-                          : 'bg-slate-950/40 border-slate-800 hover:bg-slate-800/40'
+                          ? 'bg-blue-50 border-blue-500/60 ring-1 ring-blue-500/20' 
+                          : 'bg-slate-50/40 border-slate-200 hover:bg-slate-100/60'
                         }`}
                     >
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-xs font-bold font-mono text-slate-200">{modelOpt.title}</span>
-                        <span className={`text-[9px] font-semibold px-2 py-0.5 rounded-full ${
-                          modelOpt.badge === 'Mặc định' ? 'bg-blue-500/20 text-blue-400' :
-                          modelOpt.badge === 'Hiệu năng cao' ? 'bg-purple-500/20 text-purple-400' :
-                          'bg-slate-800 text-slate-400'
+                        <span className="text-xs font-bold font-mono text-slate-700">{modelOpt.title}</span>
+                        <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${
+                          modelOpt.badge === 'Mặc định' ? 'bg-blue-100 text-blue-700' :
+                          modelOpt.badge === 'Hiệu năng cao' ? 'bg-purple-100 text-purple-700' :
+                          'bg-slate-200 text-slate-500'
                         }`}>{modelOpt.badge}</span>
                       </div>
-                      <p className="text-[10px] text-slate-400 leading-normal">{modelOpt.desc}</p>
+                      <p className="text-[10px] text-slate-450 leading-normal font-medium">{modelOpt.desc}</p>
                     </button>
                   ))}
                 </div>
               </div>
             </div>
 
-            <div className="bg-slate-950 px-6 py-4 border-t border-slate-800 flex justify-end gap-2">
+            <div className="bg-slate-50 px-6 py-4 border-t border-slate-150 flex justify-end gap-2">
               <button
                 onClick={() => saveSettings(tempKey, tempModel)}
                 disabled={showBlockingModal && !tempKey.trim()}
@@ -1462,7 +1469,7 @@ function ActiveRecallGame({ data }: { data: any[] }) {
       <div className="flex justify-between items-center gap-3">
         <button 
           onClick={handlePrev}
-          className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-lg text-xs border border-slate-800 font-medium transition-colors"
+          className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg text-xs border border-slate-200 font-bold transition-colors"
         >
           Trở lại
         </button>
@@ -1470,7 +1477,7 @@ function ActiveRecallGame({ data }: { data: any[] }) {
         {!isFlipped && (
           <button 
             onClick={handleCorrect}
-            className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white rounded-lg text-xs font-bold transition-all shadow-md shadow-emerald-950/20"
+            className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white rounded-lg text-xs font-bold transition-all shadow-md shadow-emerald-600/15"
           >
             Tôi đã biết câu trả lời (+10đ)
           </button>
@@ -1478,10 +1485,358 @@ function ActiveRecallGame({ data }: { data: any[] }) {
 
         <button 
           onClick={handleNext}
-          className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-lg text-xs border border-slate-800 font-medium transition-colors"
+          className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg text-xs border border-slate-200 font-bold transition-colors"
         >
           Kế tiếp
         </button>
+      </div>
+    </div>
+  );
+}
+
+// ==================== NEW COMPONENTS & UTILITIES ====================
+
+// Slides Backup Text Parser
+const parseSlidesFallback = (rawText: string) => {
+  const cleanMarkdownText = (text: string) => {
+    return text.replace(/```json\s*[\s\S]*?\s*```/g, '').trim();
+  };
+  const cleanText = cleanMarkdownText(rawText);
+  const sections = cleanText.split(/(?=Cảnh \d+|Slide \d+|\n##\s+|\n###\s+)/gi);
+  const parsedSlides: any[] = [];
+  
+  sections.forEach((sec, idx) => {
+    const trimmed = sec.trim();
+    if (!trimmed) return;
+    
+    const lines = trimmed.split('\n');
+    const title = lines[0].replace(/^[\s#\-*]*/, '').trim();
+    const bulletPoints: string[] = [];
+    let notes = '';
+    
+    lines.slice(1).forEach(line => {
+      const cleanLine = line.trim();
+      if (cleanLine.startsWith('-') || cleanLine.startsWith('*') || cleanLine.startsWith('+')) {
+        bulletPoints.push(cleanLine.replace(/^[\s\-*+]* /, '').trim());
+      } else if (cleanLine) {
+        notes += cleanLine + ' ';
+      }
+    });
+    
+    parsedSlides.push({
+      title: title || `Cảnh ${idx + 1}`,
+      bulletPoints: bulletPoints.length > 0 ? bulletPoints : ['Xem chi tiết lời thoại giảng giải bên dưới.'],
+      notes: notes.trim() || title
+    });
+  });
+  
+  return parsedSlides.length > 0 ? parsedSlides : [{
+    title: 'Bài giảng EduVideo',
+    bulletPoints: ['Lập trình kịch bản giảng dạy tự động'],
+    notes: cleanText.substring(0, 200) + '...'
+  }];
+};
+
+// Interactive Virtual Teacher Video Player Component using Web Speech TTS
+function VirtualTeacherPlayer({ slideData }: { slideData: any[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [rate, setRate] = useState(1.0);
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [selectedVoice, setSelectedVoice] = useState<string>('');
+
+  useEffect(() => {
+    const updateVoices = () => {
+      const allVoices = window.speechSynthesis.getVoices();
+      const viVoices = allVoices.filter(v => v.lang.startsWith('vi'));
+      setVoices(viVoices.length > 0 ? viVoices : allVoices);
+      
+      if (viVoices.length > 0 && !selectedVoice) {
+        setSelectedVoice(viVoices[0].name);
+      } else if (allVoices.length > 0 && !selectedVoice) {
+        setSelectedVoice(allVoices[0].name);
+      }
+    };
+
+    updateVoices();
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = updateVoices;
+    }
+
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, []);
+
+  const speakCurrentSlide = (index: number) => {
+    window.speechSynthesis.cancel();
+    
+    if (index < 0 || index >= slideData.length) {
+      setIsPlaying(false);
+      setIsSpeaking(false);
+      return;
+    }
+
+    const currentSlide = slideData[index];
+    const speechText = currentSlide.notes || currentSlide.title || '';
+    if (!speechText) {
+      setTimeout(() => {
+        handleSlideEnd(index);
+      }, 1000);
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(speechText);
+    utterance.lang = 'vi-VN';
+    utterance.rate = rate;
+    
+    if (selectedVoice) {
+      const voice = voices.find(v => v.name === selectedVoice);
+      if (voice) utterance.voice = voice;
+    }
+
+    utterance.onstart = () => {
+      setIsSpeaking(true);
+    };
+
+    utterance.onend = () => {
+      setIsSpeaking(false);
+      handleSlideEnd(index);
+    };
+
+    utterance.onerror = () => {
+      setIsSpeaking(false);
+      setIsPlaying(false);
+    };
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const handleSlideEnd = (finishedIndex: number) => {
+    if (finishedIndex + 1 < slideData.length) {
+      setCurrentIndex(finishedIndex + 1);
+    } else {
+      setIsPlaying(false);
+      setCurrentIndex(0);
+    }
+  };
+
+  useEffect(() => {
+    if (isPlaying) {
+      speakCurrentSlide(currentIndex);
+    } else {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    }
+  }, [isPlaying, currentIndex]);
+
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleReset = () => {
+    window.speechSynthesis.cancel();
+    setIsPlaying(false);
+    setIsSpeaking(false);
+    setCurrentIndex(0);
+  };
+
+  const currentSlide = slideData[currentIndex] || { title: 'Bài học', bulletPoints: [], notes: '' };
+
+  return (
+    <div className="w-full max-w-3xl mx-auto my-6 bg-slate-900 rounded-2xl overflow-hidden border border-slate-200/20 shadow-2xl flex flex-col">
+      {/* Video screen wrapper (16:9) */}
+      <div className="w-full aspect-[16/9] relative bg-gradient-to-tr from-slate-950 via-slate-900 to-indigo-950 flex flex-col md:flex-row overflow-hidden border-b border-slate-800">
+        
+        {/* Left Side: Avatar Panel */}
+        <div className="w-full md:w-2/5 flex flex-col items-center justify-center p-6 relative border-r border-slate-800/50 bg-slate-900/40">
+          
+          {/* Virtual Teacher Avatar SVG */}
+          <div className="w-32 h-32 md:w-40 md:h-40 relative rounded-full bg-indigo-950/40 border border-indigo-500/30 flex items-center justify-center overflow-visible">
+            <svg viewBox="0 0 100 100" className="w-4/5 h-4/5 overflow-visible">
+              <defs>
+                <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#ffdbb5" />
+                  <stop offset="100%" stopColor="#fca5a5" />
+                </linearGradient>
+                <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#1e1b4b" />
+                  <stop offset="100%" stopColor="#312e81" />
+                </linearGradient>
+              </defs>
+              
+              {/* Hair Back */}
+              <path d="M 15 65 C 10 30, 90 30, 85 65 Z" fill="url(#hairGrad)" />
+
+              {/* Head & Neck */}
+              <rect x="44" y="60" width="12" height="15" rx="4" fill="#fca5a5" />
+              <circle cx="50" cy="45" r="24" fill="url(#skinGrad)" stroke="#fca5a5" strokeWidth="0.5" />
+
+              {/* Hair Front / Bangs */}
+              <path d="M 26 38 C 35 20, 65 20, 74 38 C 65 30, 35 30, 26 38 Z" fill="url(#hairGrad)" />
+
+              {/* Eyes */}
+              <ellipse cx="40" cy="44" rx="3.5" ry="3.5" fill="#1e293b" />
+              <ellipse cx="60" cy="44" rx="3.5" ry="3.5" fill="#1e293b" />
+              
+              <circle cx="41.5" cy="42.5" r="1" fill="#ffffff" />
+              <circle cx="61.5" cy="42.5" r="1" fill="#ffffff" />
+              
+              <path d="M 34 38 Q 40 37 45 39" stroke="#1e1b4b" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+              <path d="M 66 38 Q 60 37 55 39" stroke="#1e1b4b" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+
+              {/* Glasses */}
+              <circle cx="40" cy="44" r="7" fill="none" stroke="#6366f1" strokeWidth="1.5" />
+              <circle cx="60" cy="44" r="7" fill="none" stroke="#6366f1" strokeWidth="1.5" />
+              <line x1="47" y1="44" x2="53" y2="44" stroke="#6366f1" strokeWidth="1.5" />
+
+              {/* Nose */}
+              <path d="M 50 46 Q 52 49 50 51" stroke="#dc2626" strokeWidth="1" fill="none" />
+
+              {/* Animated Mouth */}
+              {isSpeaking ? (
+                <ellipse 
+                  cx="50" 
+                  cy="56" 
+                  rx="6" 
+                  ry="4" 
+                  fill="#991b1b" 
+                  stroke="#ef4444" 
+                  strokeWidth="1.5"
+                  className="animate-[pulse_0.2s_infinite]"
+                />
+              ) : (
+                <path 
+                  d="M 44 54 Q 50 60 56 54" 
+                  stroke="#991b1b" 
+                  strokeWidth="2" 
+                  fill="none" 
+                  strokeLinecap="round" 
+                />
+              )}
+              
+              <circle cx="31" cy="49" r="3" fill="#fca5a5" opacity="0.6" />
+              <circle cx="69" cy="49" r="3" fill="#fca5a5" opacity="0.6" />
+            </svg>
+            
+            <div className="absolute top-2 right-2 flex items-center gap-1 bg-red-600 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider animate-pulse">
+              <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+              Live Teacher
+            </div>
+          </div>
+          
+          <div className="mt-3 text-center">
+            <h4 className="text-xs font-bold text-slate-200">Cô giáo ảo EduVideo</h4>
+            <p className="text-[10px] text-blue-400 font-semibold mt-0.5">Đang giảng giải bài tập</p>
+          </div>
+        </div>
+
+        {/* Right Side: Virtual Whiteboard */}
+        <div className="flex-1 bg-white p-6 flex flex-col justify-center relative overflow-hidden transition-all duration-500">
+          <div className="absolute top-3 left-4 flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500/80 shadow-md"></span>
+            <span className="text-[10px] text-slate-400 uppercase tracking-widest font-extrabold">Bảng học trực quan</span>
+          </div>
+
+          <div className="flex flex-col gap-4 animate-fade-in text-slate-800">
+            <h3 className="text-base font-extrabold text-slate-900 border-b-2 border-blue-500/80 pb-2 tracking-tight leading-tight">
+              {currentSlide.title || 'Bài học'}
+            </h3>
+            
+            <ul className="flex flex-col gap-2">
+              {currentSlide.bulletPoints && currentSlide.bulletPoints.map((pt: string, idx: number) => (
+                <li key={idx} className="flex items-start gap-2 text-xs text-slate-700 font-semibold leading-relaxed">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shrink-0 mt-1.5"></span>
+                  <span>{pt}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Live Subtitle bar Overlay at bottom of player */}
+        {isPlaying && currentSlide.notes && (
+          <div className="absolute bottom-0 left-0 right-0 bg-black/85 backdrop-blur-md px-4 py-2.5 border-t border-slate-800 text-center z-10 animate-fade-in">
+            <p className="text-[11px] text-slate-200 font-semibold leading-relaxed tracking-wide select-none">
+              🎤 {currentSlide.notes}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Control panel at bottom */}
+      <div className="bg-slate-950 px-4 py-3 flex flex-wrap items-center justify-between gap-3 text-xs">
+        
+        {/* Play control buttons */}
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={handlePlayPause}
+            className={`flex items-center justify-center w-8 h-8 rounded-full shadow-md text-white font-bold transition-all
+              ${isPlaying 
+                ? 'bg-amber-600 hover:bg-amber-500 shadow-amber-900/20' 
+                : 'bg-blue-600 hover:bg-blue-500 shadow-blue-900/30'
+              }`}
+            title={isPlaying ? 'Tạm dừng bài giảng' : 'Bắt đầu bài giảng'}
+          >
+            {isPlaying ? (
+              <span className="flex gap-1 items-center justify-center">
+                <span className="w-1 h-3.5 bg-white rounded-full"></span>
+                <span className="w-1 h-3.5 bg-white rounded-full"></span>
+              </span>
+            ) : (
+              <Play className="w-4 h-4 text-white ml-0.5" />
+            )}
+          </button>
+
+          <button 
+            onClick={handleReset}
+            className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800 rounded-lg transition-all"
+            title="Reset về đầu bài"
+          >
+            Quay lại đầu
+          </button>
+          
+          <span className="text-[10px] text-slate-500 font-bold font-mono tracking-wider">
+            Slide {currentIndex + 1} / {slideData.length}
+          </span>
+        </div>
+
+        {/* TTS Settings */}
+        <div className="flex items-center gap-4">
+          
+          {/* Voice selector */}
+          {voices.length > 0 && (
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] text-slate-500 font-semibold">Giọng đọc:</span>
+              <select 
+                value={selectedVoice} 
+                onChange={(e) => setSelectedVoice(e.target.value)}
+                className="bg-slate-900 border border-slate-800 rounded px-2 py-1 text-[10px] text-slate-300 font-medium focus:outline-none focus:ring-1 focus:ring-blue-500"
+              >
+                {voices.map((v, i) => (
+                  <option key={i} value={v.name}>{v.name.includes('Google') ? 'Google Tiếng Việt' : v.name.replace('Microsoft', 'Microsoft MS')}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {/* Speed Rate bar */}
+          <div className="flex items-center gap-1.5">
+            <span className="text-[10px] text-slate-500 font-semibold">Tốc độ:</span>
+            <select 
+              value={rate} 
+              onChange={(e) => setRate(parseFloat(e.target.value))}
+              className="bg-slate-900 border border-slate-800 rounded px-2 py-1 text-[10px] text-slate-300 font-medium focus:outline-none focus:ring-1 focus:ring-blue-500"
+            >
+              <option value="0.8">0.8x</option>
+              <option value="1.0">1.0x (Chuẩn)</option>
+              <option value="1.2">1.2x</option>
+              <option value="1.5">1.5x</option>
+            </select>
+          </div>
+        </div>
+
       </div>
     </div>
   );
